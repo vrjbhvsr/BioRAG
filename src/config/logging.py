@@ -44,7 +44,7 @@ class log:
         filename=os.path.join(self.LOG_DIR, self.LOG_FILE), # by rotating, meaning archiving old logs, and 
             maxBytes=5 * 1024 * 1024,  # 5 MB               # creating new ones. So, the BioRAG.log will grow 
             backupCount=5,                                  # till 5MB then creates new BioRAG.log.1 and  
-        )                                                   # archives the old. it does It does this upto 25                                                                MB(backup count 5) and deletes the archived                                                                    older one.
+        )                                                   # archives the old. it does It does this upto 25                                                              # MB(backup count 5) and deletes the archived                                                                 # older one.
 
         
         file_handler.setFormatter(formatter)
