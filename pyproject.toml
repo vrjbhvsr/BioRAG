@@ -1,0 +1,39 @@
+[project]
+name = "BioRAG"
+version = "0.0.1"
+description = "Retrieval-Augmented Agent for scientific literature understanding."
+authorss = [
+    {name= "Vraj Bhavsar", email = "vrajbhavsar377@gmail.com"}
+]
+readme = "README.md"
+licence = {file = "LICEN[CS]E.*"}
+requires-python = ">=3.10"
+keywords = ["RAG", "LANGCHAIN", "LLAMA3"]
+
+# classifiers for PyPI 
+classifiers = [
+    "Programming Language :: Python :: 3",
+    "Operating System :: OS Independent"
+]
+
+# setting up dependencies
+
+dependencies = [
+    {file = "requirements.txt"}
+]
+
+[build-system]
+requires = ["setuptools>=61.0", "wheel"]
+build-backend = "setuptools.build_meta"
+
+[tool.setuptools]
+packages = ["src"]
+package-dir = {"" = "src"}
+
+
+[tool.black]
+line-length = 88
+target-version = ['py310']
+
+[tool.isort]
+profile = "black"
