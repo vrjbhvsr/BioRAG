@@ -36,42 +36,26 @@ class IngestionPipeline:
 
         try:
             log.info("Starting Data Ingestion Pipeline")
-
+            
+            # Loading Documents
             documents = self.loader.load()
             log.info("Documents loaded successfully. The number of documents %d", len(documents))
+
+            # Cleaning Documents
+            documents = self.cleaner.clean(documents)
+            log.info("Documents are cleaned successfully.")
+
+            # Summarising Tbales and/or Images
+            documents = self.summarizer.summarize(documents)
+            log.info("Summarized the table/image.")
+
+            # Splitting Documents
+            documents = self.splitter(documents)
+            log.info("Documents are splitted and created it's chunks.")
             
         except Exception as e:
             log.error(e)
             raise CustomException(e, sys)
-        
 
 
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
+    
