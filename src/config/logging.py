@@ -14,17 +14,19 @@ class log:
         self.LOG_DIR = os.getenv("LOG_DIR", "logs")
         self.LOG_FILE = os.getenv("LOG_FILE", "BioRAG.log")
 
-    def _check_log_dir() -> None:
+    def _check_log_dir(self) -> None:
         "Create a log directory if not exist."
         os.makedirs(self.LOG_DIR, exist_ok = True)
 
-    def get_logger(name: Optional[str]: None, 
-        level: str = self.LOG_LEVEL,) -> logging.Logger:
+    def get_logger(self, name: Optional[str] = None, 
+        level: Optional[str] = None) -> logging.Logger:
 
         """
-        Returns a configured logger instance.
+        Returns a configured logger instance.   
         """
 
+        if level is None:
+            level = self.LOG_LEVEL
         logger = logging.getLogger(name)
         logger.setLevel(level)
 

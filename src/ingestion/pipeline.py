@@ -35,7 +35,11 @@ class IngestionPipeline:
         """    
 
         try:
-            pass
+            log.info("Starting Data Ingestion Pipeline")
+
+            documents = self.loader.load()
+            log.info("Documents loaded successfully. The number of documents %d", len(documents))
+            
         except Exception as e:
             log.error(e)
             raise CustomException(e, sys)
