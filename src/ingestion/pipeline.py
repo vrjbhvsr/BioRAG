@@ -1,0 +1,73 @@
+from typing import List
+from langchain_core.documents import Document
+from ingestion.loader.base import BaseLoader
+from ingestion.preprocess.base import BaseCleaner
+from ingestion.splitting.base import BaseSplitter
+from ingestion.enrichment.base import BaseSummarizer
+from config.logging import log
+from config.exception import CustomException
+import sys
+
+logger = log()
+
+log = logger.get_logger(__name__)
+
+class IngestionPipeline:
+    def __init__(self,
+                loader: BaseLoader,
+                 cleaner: BaseCleaner,
+                 splitter: BaseSplitter,
+                 summarizer: BaseSummarizer,
+                ):
+        self.loader = loader
+        self.cleaner = cleaner
+        self.splitter = splitter
+        self.summarizer = summarizer
+    
+    
+    def run(self) -> None:
+        """This Function run the complete pipeline and ingest all the data to the vector database.
+        Args:
+        loader: BaseLoader = To loader the data. It can be anything pdf, csv, url.
+        cleaner: BaseCleaner = To preprocess the data such as, removing boiler plate, unnecessary test, etc.
+        splitter: BaseSplitter = To split the data either a function or a text splitter.
+        summarizer: BaseSummarizer = To generate summaries
+        """    
+
+        try:
+            pass
+        except Exception as e:
+            log.error(e)
+            raise CustomException(e, sys)
+        
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
