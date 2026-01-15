@@ -7,6 +7,7 @@ from ingestion.enrichment.base import BaseSummarizer
 from config.logging import log
 from config.exception import CustomException
 import sys
+from constants import *
 
 logger = log()
 
@@ -15,14 +16,14 @@ log = logger.get_logger(__name__)
 class IngestionPipeline:
     def __init__(self,
                 loader: BaseLoader,
-                 cleaner: BaseCleaner,
-                 splitter: BaseSplitter,
-                 summarizer: BaseSummarizer,
+                 #cleaner: BaseCleaner,
+                 #splitter: BaseSplitter,
+                 #summarizer: BaseSummarizer,
                 ):
         self.loader = loader
-        self.cleaner = cleaner
+        ''' self.cleaner = cleaner
         self.splitter = splitter
-        self.summarizer = summarizer
+        self.summarizer = summarizer'''
     
     
     def run(self) -> None:
@@ -35,22 +36,39 @@ class IngestionPipeline:
         """    
 
         try:
-            log.info("Starting Data Ingestion Pipeline")
+            log.info(
+                "\n"
+                "================ Document Loading started ================\n"
+            )
+
             
             # Loading Documents
             documents = self.loader.load()
-            log.info("Documents loaded successfully. The number of documents %d", len(documents))
+
+            log.info("Documents loaded successfully. The number of documents [%d]", len(documents))
 
             # Cleaning Documents
-            documents = self.cleaner.clean(documents)
+            log.info(
+                "\n"
+                "================ Document cleaning started ================\n"
+            )
+            #documents = self.cleaner.clean(documents)
             log.info("Documents are cleaned successfully.")
 
             # Summarising Tbales and/or Images
-            documents = self.summarizer.summarize(documents)
+            log.info(
+                "\n"
+                "================ Generating Table/Image Summaries ================\n"
+            )
+            #documents = self.summarizer.summarize(documents)
             log.info("Summarized the table/image.")
 
             # Splitting Documents
-            documents = self.splitter(documents)
+            log.info(
+                "\n"
+                "================ Chunking initiated ================\n"
+            )
+            #documents = self.splitter(documents)
             log.info("Documents are splitted and created it's chunks.")
             
         except Exception as e:
