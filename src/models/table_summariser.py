@@ -19,7 +19,7 @@ class table_summarizer(BaseModelLoader):
     A model loader for table summarization tasks.
     """
     def __init__(self):
-        self.model_name = "Qwen/Qwen2.5-7B-Instruct"
+        self.model_name = MODEL_NAME
         self.tokenizer = AutoTokenizer.from_pretrained(self.model_name)
         
 
