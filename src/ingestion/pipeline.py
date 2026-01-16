@@ -26,7 +26,7 @@ class IngestionPipeline:
         self.summarizer = summarizer'''
     
     
-    def run(self) -> None:
+    def run(self): #-> None:
         """This Function run the complete pipeline and ingest all the data to the vector database.
         Args:
         loader: BaseLoader = To loader the data. It can be anything pdf, csv, url.
@@ -44,7 +44,7 @@ class IngestionPipeline:
             
             # Loading Documents
             documents = self.loader.load()
-
+            #print(documents)
             log.info("Documents loaded successfully. The number of documents [%d]", len(documents))
 
             # Cleaning Documents

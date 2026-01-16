@@ -19,10 +19,8 @@ try:
 )
 
     pipeline = IngestionPipeline(loader = loader,)
-    documents = pipeline.run()
-    for d in documents:
-        print(d.page_content)
-        print("\n"+"---"*20+"\n" + str(d.metadata)+"\n" +"---"*20 +"\n")
+    pipeline.run()
+    
 except Exception as e:
     log.error(e)
     raise CustomException(e, sys)

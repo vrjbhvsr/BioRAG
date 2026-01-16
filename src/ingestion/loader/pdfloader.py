@@ -1,11 +1,13 @@
 from ingestion.loader.base import BaseLoader
 from langchain_community.document_loaders import UnstructuredPDFLoader
+from langchain_core.documents import Document
 from config.logging import log
 from config.exception import CustomException
 from pathlib import Path
 from constants import *
 import sys
 import os 
+from typing import List
 
 logger = log()
 log = logger.get_logger(__name__)
@@ -15,7 +17,7 @@ class PDFLoader(BaseLoader):
     def __init__(self, path: str | Path):
         self.path = path
 
-    def load(self):
+    def load(self) -> List[Document]:
         """This function will load the Langchain's UnstructuredPDFLoader.
         """
         try:
