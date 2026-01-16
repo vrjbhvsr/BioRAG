@@ -1,4 +1,5 @@
 from ingestion.loader.pdfloader import PDFLoader
+from ingestion.preprocess.cleaner import DocumentCleaner
 from ingestion.pipeline import IngestionPipeline
 from config.logging import log
 from config.exception import CustomException
@@ -10,6 +11,7 @@ logger = log()
 log = logger.get_logger(__name__)
 
 loader = PDFLoader(FILE_PATH)
+cleaner = DocumentCleaner()
 try:
     log.info(
     "\n"
@@ -18,7 +20,8 @@ try:
     "====================================================="
 )
 
-    pipeline = IngestionPipeline(loader = loader,)
+    pipeline = IngestionPipeline(loader = loader,
+                                cleaner = cleaner)
     pipeline.run()
     
 except Exception as e:

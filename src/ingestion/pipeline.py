@@ -16,13 +16,13 @@ log = logger.get_logger(__name__)
 class IngestionPipeline:
     def __init__(self,
                 loader: BaseLoader,
-                 #cleaner: BaseCleaner,
+                 cleaner: BaseCleaner,
                  #splitter: BaseSplitter,
                  #summarizer: BaseSummarizer,
                 ):
         self.loader = loader
-        ''' self.cleaner = cleaner
-        self.splitter = splitter
+        self.cleaner = cleaner
+        '''self.splitter = splitter
         self.summarizer = summarizer'''
     
     
@@ -52,7 +52,9 @@ class IngestionPipeline:
                 "\n"
                 "================ Document cleaning started ================\n"
             )
-            #documents = self.cleaner.clean(documents)
+            documents = self.cleaner.clean(documents)
+            for doc in documents:
+                print(doc.page_content)
             log.info("Documents are cleaned successfully.")
 
             # Summarising Tbales and/or Images
