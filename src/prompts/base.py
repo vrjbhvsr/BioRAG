@@ -5,7 +5,7 @@ from langchain_core.prompts.chat import ChatPromptTemplate
 
 class BasePrompt(ABC):
     """
-    Deifing the structure for all document loaders.
+    Defining the structure for all prompt templates.
     """
 
     @abstractmethod
