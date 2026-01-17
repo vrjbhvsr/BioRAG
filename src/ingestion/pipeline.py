@@ -17,13 +17,11 @@ class IngestionPipeline:
     def __init__(self,
                 loader: BaseLoader,
                  cleaner: BaseCleaner,
-                 #splitter: BaseSplitter,
-                 #summarizer: BaseSummarizer,
+                 splitter: BaseSplitter,
                 ):
         self.loader = loader
         self.cleaner = cleaner
-        '''self.splitter = splitter
-        self.summarizer = summarizer'''
+        self.splitter = splitter
     
     
     def run(self): #-> None:
@@ -57,20 +55,13 @@ class IngestionPipeline:
                 print(doc.page_content)
             log.info("Documents are cleaned successfully.")
 
-            # Summarising Tbales and/or Images
-            log.info(
-                "\n"
-                "================ Generating Table/Image Summaries ================\n"
-            )
-            #documents = self.summarizer.summarize(documents)
-            log.info("Summarized the table/image.")
 
             # Splitting Documents
             log.info(
                 "\n"
-                "================ Chunking initiated ================\n"
+                "================Section-wise Chunking initiated ================\n"
             )
-            #documents = self.splitter(documents)
+            documents = self.splitter(documents)
             log.info("Documents are splitted and created it's chunks.")
             
         except Exception as e:
