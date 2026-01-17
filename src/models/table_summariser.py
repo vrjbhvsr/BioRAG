@@ -3,11 +3,10 @@ from config.logging import log
 from langchain_core.runnables.base import RunnableBinding
 from config.exception import CustomException
 from langchain_huggingface.llms import HuggingFacePipeline
-from transformers import AutoTokenizer, pipeline, AutoModelForCausalLM
+from transformers import AutoTokenizer, pipeline
 from constants import *
 from dotenv import load_dotenv
 import sys
-import torch
 
 logger = log()
 log = logger.get_logger(__name__)
@@ -34,18 +33,14 @@ class table_summarizer(BaseModelLoader):
         try:
             # Placeholder for actual model loading logic
             log.info("Loading table summarization model...")
-            pipe = pipeline(
-                            "text-generation",
-                            model=self.model_name,
-                            tokenizer=self.tokenizer,
-                            device_map=DEVICE_MAP,
-                            dtype=DTYPE, 
-                            max_new_tokens=MAX_NEW_TOKENS,   
-                            do_sample=DO_SAMPLE,          
-                            temperature=TEMPERATURE,           
-                            repetition_penalty=REPETITION_PENALTY,
-                            return_full_text=RETURN_FULL_TEXT     
-                        )
+            pipe = pipeline("text-generation",
+                    tokenizer=self.tokenizer,
+                   model= self.model_name,
+                    device_map = DEVICE_MAP,
+                    #dtype = DTYPE,
+                    max_new_tokens=MAX_NEW_TOKENS,   
+                    do_sample=DO_SAMPLE,
+                   )
             model_pipe = HuggingFacePipeline(pipeline=pipe)
             model = model_pipe.bind(skip_prompt = SKIP_PROMPT)
             log.info("Table summarization model loaded successfully.")

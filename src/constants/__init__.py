@@ -45,3 +45,25 @@ Your ONLY task is to generate a written summary of the provided table in exactly
 
 Table Caption: [INSERT_CAPTION_HERE]
 HTML Table: [INSERT_HTML_HERE]<|eot_id|><|start_header_id|>assistant<|end_header_id|>"""
+
+
+#================================================================#   
+#                  Embedding Constants
+#================================================================
+
+EMBEDDING_MODEL_NAME = "nvidia/llama-embed-nemotron-8b"
+EMBEDDING_DEVICE = 0
+TRUST_REMOTE_CODE = True
+PARENT_CHUNK_SIZE = 2000
+PARENT_CHUNK_OVERLAP = 100
+CHILD_CHUNK_SIZE = 400
+CHILD_CHUNK_OVERLAP = 20
+SEPARATORS = ["\n\n", "\n", " ", ""]
+ADD_START_INDEX = True
+
+
+#================================================================#
+#                  Vectorstore Constants
+#================================================================#
+
+CHROMA_PERSIST_DIR = "chroma_biorag_db"
