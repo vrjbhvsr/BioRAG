@@ -1,4 +1,4 @@
-from models.table_summariser import table_summarizer
+from src.models.Llama import model
 from prompts.table_summariser_prompt import table_summariser_prompt
 from config.logging import log
 from config.exception import CustomException
@@ -15,7 +15,7 @@ class table_summary_chain:
     """
     def __init__(self):
         
-            self.model = table_summarizer().load()
+            self.model = model().load()
             self.prompt = table_summariser_prompt().prompt()
             self.parser = StrOutputParser()
 

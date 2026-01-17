@@ -14,7 +14,7 @@ log = logger.get_logger(__name__)
 load_dotenv()
 
 
-class table_summarizer(BaseModelLoader):
+class model(BaseModelLoader):
     """
     A model loader for table summarization tasks.
     """
