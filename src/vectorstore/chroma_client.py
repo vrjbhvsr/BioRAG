@@ -29,10 +29,11 @@ class chroma_client:
                 persist_directory=CHROMA_PERSIST_DIR,
                 embedding_function=self.embedder,
                 collection_name=BIORAG_COLLECTION,
-                metadata=BIORAG_COLLECTION_METADATA,
-                in_memory_store=InMemoryStore()
+                #metadata=BIORAG_COLLECTION_METADATA,
+                #in_memory_store=InMemoryStore()
             )
             log.info("Chroma client initialized successfully.")
+            return self.client
         except Exception as e:
             log.error("Error initializing Chroma client.")
             raise CustomException(e, sys)

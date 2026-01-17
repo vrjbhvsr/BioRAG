@@ -26,11 +26,8 @@ class chunking:
         Returns:
             int: The token length of the text.
         """
-        try:
-            log.info("Calculating token length...")
-            
+        try:            
             token_length = len(self.tokenizer.encode(text, add_special_tokens=False))
-            log.info(f"Token length calculated: {token_length}")
             return token_length
         except Exception as e:
             log.error("Error calculating token length.")

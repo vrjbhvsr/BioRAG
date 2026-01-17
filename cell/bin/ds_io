@@ -1,0 +1,6 @@
+#!/home/jovyan/work/CellSense/X20251016-CellSense-VB/cell/bin/python
+
+from deepspeed.nvme import ds_io_main
+
+if __name__ == '__main__':
+    ds_io_main()
