@@ -73,6 +73,22 @@ class DocumentCleaner(BaseCleaner):
         except Exception as e:
             log.error(e)
             raise CustomException(e,sys)
+        
+    def _clean_metadata(self, documents: List[Document]) -> list[Document]:
+        """This function cleans the metadata of the documents."""
+        Docs = self._clean_narrative_text(documents)
+        try:
+            filtered_docs = []
+            not_allowed_keys=['coordinates', 'languages', 'element_id', 'last_modified']
+            for doc in Docs:
+                filtered_metadata = {key: value for key, value in doc.metadata.items() if key not in not_allowed_keys}
+                filtered_doc = Document(page_content=doc.page_content, metadata=filtered_metadata)
+                filtered_docs.append(filtered_doc)
+                log.info("Metadata cleaned successfully...")
+            return filtered_docs
+        except Exception as e:
+            log.error(e)
+            raise CustomException(e,sys)
 
     def clean(self, documents: List[Document]) -> List[Document]:
         """This function filters documetns bsed on required document category.
@@ -80,6 +96,6 @@ class DocumentCleaner(BaseCleaner):
         - It also cleans the narrative text.
         """
         documents = documents.copy()
-        return self._clean_narrative_text(documents)
+        return self._clean_metadata(documents)
             
                 

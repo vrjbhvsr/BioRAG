@@ -21,25 +21,22 @@ class Table_Image_Summary(BaseSummarizer):
             log.error("Error initializing Table/Image Summarizer.")
             raise CustomException(e, sys)
 
-    def summarize(self, documents: list) -> str:
+    def summarize(self, txt_as_html: str, caption: str) -> str:
         """
         Summarize the given table or images
 
         Args:
-            documents: Raw documents
+            txt_as_html: Table text in html format
+            caption: Caption for the table or image
 
         Returns:
             summarized table or images
         """
         try:
             log.info("Summarizing documents...")
-            summaries = []
-            for doc in documents:
-                summary = self.chain.invoke({"text": doc.page_content})
-                summaries.append(summary)
-            final_summary = "\n".join(summaries)
+            response = self.chain.invoke({"table_content": txt_as_html, "table_caption": caption})
             log.info("Documents summarized successfully.")
-            return final_summary
+            return response
         except Exception as e:
             log.error("Error summarizing documents.")
             raise CustomException(e, sys)
