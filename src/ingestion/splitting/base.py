@@ -15,10 +15,10 @@ class BaseSplitter(ABC):
         Semantically split the Documents.
 
         Args:
-            documents: Raw documents
+            documents: Raw Cleaned documents
 
         Returns:
-            Semantically splitted documents
+            Section-wise splitted documents
         """
 
         pass

@@ -10,15 +10,16 @@ class BaseSummarizer(ABC):
     """
 
     @abstractmethod
-    def summarize(self, documents: List[Document]) -> str:
+    def summarize(self, txt_as_html: str, caption: str) -> str:
         """
         Summarize the given table or images
 
         Args:
-            documents: Raw documents
+            txt_as_html: Table text in html format
+            caption: Caption for the table or image
 
         Returns:
-            summarized tablea or images
+            summarized table or images
         """
 
         pass
