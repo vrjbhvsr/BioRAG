@@ -3,11 +3,12 @@ from langchain_core.documents import Document
 from ingestion.loader.base import BaseLoader
 from ingestion.preprocess.base import BaseCleaner
 from ingestion.splitting.base import BaseSplitter
-from ingestion.enrichment.base import BaseSummarizer
+from retrieval.parent_retriever import retirever
 from config.logging import log
 from config.exception import CustomException
 import sys
 from constants import *
+from langchain_classic.retrievers import ParentDocumentRetriever
 
 logger = log()
 
@@ -18,10 +19,12 @@ class IngestionPipeline:
                 loader: BaseLoader,
                  cleaner: BaseCleaner,
                  splitter: BaseSplitter,
+                 retriever: ParentDocumentRetriever
                 ):
         self.loader = loader
         self.cleaner = cleaner
         self.splitter = splitter
+        self.retriever = retriever
     
     
     def run(self) -> List[Document]: #-> None:
@@ -61,8 +64,16 @@ class IngestionPipeline:
             )
             documents = self.splitter.split(documents)
             log.info("Documents are splitted and created it's chunks.")
+            # Creating Retriever
 
-            return documents
+            log.info(
+                "\n"
+                "================ Retriever Creation initiated ================\n"
+            )
+            retriever = self.retriever.get_retriever(documents)
+            log.info("Retriever is created successfully.")
+
+            return retriever
             
         except Exception as e:
             log.error(e)

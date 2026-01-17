@@ -1,6 +1,7 @@
 from ingestion.loader.pdfloader import PDFLoader
 from ingestion.preprocess.cleaner import DocumentCleaner
 from ingestion.splitting.SectionBased_splitter import SectionBasedSplitter
+from retrieval.parent_retriever import retirever
 from ingestion.pipeline import IngestionPipeline
 from config.logging import log
 from config.exception import CustomException
@@ -14,6 +15,7 @@ log = logger.get_logger(__name__)
 loader = PDFLoader(FILE_PATH)
 cleaner = DocumentCleaner()
 splitter = SectionBasedSplitter()
+retriever = retirever()
 try:
     log.info(
     "\n"
@@ -24,13 +26,16 @@ try:
 
     pipeline = IngestionPipeline(loader = loader,
                                 cleaner = cleaner,
-                                splitter = splitter
+                                splitter = splitter,
+                                retriever = retriever
                                 )
-    docs = pipeline.run()
-    for d in docs:
-        print("\n"+"---"*20+"\n" + str(d.metadata)+"\n" +"---"*20 +"\n")
-        print(d.page_content)
-        
+    retriever = pipeline.run()
+    query = "Compare the simulated electric field outcomes with the measured electric current."
+    relevent_docs = retriever.invoke(query)
+    print(len(relevent_docs))
+    for i in relevent_docs:
+        print(i.metadata.get('section_header'))
+    
 
     log.info(
     "\n"
