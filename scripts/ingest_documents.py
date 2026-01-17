@@ -1,6 +1,6 @@
 from ingestion.loader.pdfloader import PDFLoader
 from ingestion.preprocess.cleaner import DocumentCleaner
-from ingestion.splitting.splitter import SectionBasedSplitter
+from ingestion.splitting.SectionBased_splitter import SectionBasedSplitter
 from ingestion.pipeline import IngestionPipeline
 from config.logging import log
 from config.exception import CustomException
