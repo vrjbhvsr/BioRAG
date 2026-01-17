@@ -24,7 +24,7 @@ class IngestionPipeline:
         self.splitter = splitter
     
     
-    def run(self): #-> None:
+    def run(self) -> List[Document]: #-> None:
         """This Function run the complete pipeline and ingest all the data to the vector database.
         Args:
         loader: BaseLoader = To loader the data. It can be anything pdf, csv, url.
@@ -51,8 +51,6 @@ class IngestionPipeline:
                 "================ Document cleaning started ================\n"
             )
             documents = self.cleaner.clean(documents)
-            for doc in documents:
-                print(doc.page_content)
             log.info("Documents are cleaned successfully.")
 
 
@@ -61,8 +59,10 @@ class IngestionPipeline:
                 "\n"
                 "================Section-wise Chunking initiated ================\n"
             )
-            documents = self.splitter(documents)
+            documents = self.splitter.split(documents)
             log.info("Documents are splitted and created it's chunks.")
+
+            return documents
             
         except Exception as e:
             log.error(e)

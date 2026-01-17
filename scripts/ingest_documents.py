@@ -26,7 +26,11 @@ try:
                                 cleaner = cleaner,
                                 splitter = splitter
                                 )
-    pipeline.run()
+    docs = pipeline.run()
+    for d in docs:
+        print("\n"+"---"*20+"\n" + str(d.metadata)+"\n" +"---"*20 +"\n")
+        print(d.page_content)
+        
 
     log.info(
     "\n"

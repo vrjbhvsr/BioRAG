@@ -83,7 +83,7 @@ class SectionBasedSplitter(BaseSplitter):
                 if doc_category == "Table" and metadata_copy.get('text_as_html'):
                         txt_html = metadata_copy.get('text_as_html')
                         summary = self.table_summarizer.summarize(txt_html, caption)
-                        new_content += "\n Table Summary: \n" + summary.replace("Assistant: ", "") + "\n"
+                        new_content += "\n Table Summary: \n"+ txt_html + summary.replace("Assistant: ", "") + "\n"
                         
                 metadata.update(chunk_metadata)
 

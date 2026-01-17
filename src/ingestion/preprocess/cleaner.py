@@ -84,7 +84,7 @@ class DocumentCleaner(BaseCleaner):
                 filtered_metadata = {key: value for key, value in doc.metadata.items() if key not in not_allowed_keys}
                 filtered_doc = Document(page_content=doc.page_content, metadata=filtered_metadata)
                 filtered_docs.append(filtered_doc)
-                log.info("Metadata cleaned successfully...")
+            log.info("Metadata cleaned successfully...")
             return filtered_docs
         except Exception as e:
             log.error(e)

@@ -27,11 +27,7 @@ class table_summary_chain:
         """
         try:
             log.info("Initializing table summary chain...")
-            table_summary_chain = RunnableSequence([
-                self.prompt,
-                self.model,
-                self.parser
-            ])
+            table_summary_chain = self.prompt | self.model | self.parser
             log.info("Table summary chain initialized successfully.")
             return table_summary_chain
         except Exception as e:
