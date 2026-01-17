@@ -1,5 +1,6 @@
 from ingestion.loader.pdfloader import PDFLoader
 from ingestion.preprocess.cleaner import DocumentCleaner
+from ingestion.splitting.splitter import SectionBasedSplitter
 from ingestion.pipeline import IngestionPipeline
 from config.logging import log
 from config.exception import CustomException
@@ -12,6 +13,7 @@ log = logger.get_logger(__name__)
 
 loader = PDFLoader(FILE_PATH)
 cleaner = DocumentCleaner()
+splitter = SectionBasedSplitter()
 try:
     log.info(
     "\n"
@@ -21,8 +23,17 @@ try:
 )
 
     pipeline = IngestionPipeline(loader = loader,
-                                cleaner = cleaner)
+                                cleaner = cleaner,
+                                splitter = splitter
+                                )
     pipeline.run()
+
+    log.info(
+    "\n"
+    "=====================================================\n"
+    "         DATA INGESTION PIPELINE Finished 🚀\n"
+    "====================================================="
+)
     
 except Exception as e:
     log.error(e)
