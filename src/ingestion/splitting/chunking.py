@@ -36,7 +36,7 @@ class chunking:
             log.error("Error calculating token length.")
             raise CustomException(e, sys)
 
-    def parent_splitter(self, text: str,) -> list:
+    def parent_splitter(self) -> list:
         """
         Chunk the input text into smaller parts.
 
