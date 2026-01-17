@@ -1,4 +1,4 @@
-from models.table_summary import table_summarizer
+from models.table_summariser import table_summarizer
 from prompts.table_summariser_prompt import table_summariser_prompt
 from config.logging import log
 from config.exception import CustomException
