@@ -13,9 +13,9 @@ log = logger.get_logger(__name__)
 
 class GenerationPipeline:
     def __init__(self, 
-                rewriter: QueryRewriter,
-                 mapper: Mapper,
-                 reducer: Reducer):
+                rewriter,
+                 mapper,
+                 reducer):
         self.rewriter = rewriter
         self.mapper = mapper
         self.reducer = reducer  
