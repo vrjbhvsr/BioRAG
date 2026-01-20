@@ -6,7 +6,8 @@ from ingestion.splitting.base import BaseSplitter
 from ingestion.enrichment.table_summary import Table_Image_Summary
 from config.exception import CustomException
 import sys
-from config.logging import log  
+from config.logging import log 
+import hashlib 
 
 logger = log()
 log = logger.get_logger(__name__)   
@@ -18,6 +19,10 @@ class SectionBasedSplitter(BaseSplitter):
     """
     def __init__(self):
         self.table_summarizer = Table_Image_Summary()
+
+    def generate_hash(self, text: str) -> str:
+        """Generate a SHA256 hash for the given text."""
+        return hashlib.sha256(text.encode('utf-8')).hexdigest()
 
 
     def split(self, documents: List[Document]) -> List[Document]:
@@ -95,7 +100,7 @@ class SectionBasedSplitter(BaseSplitter):
                     chunk_metadata['start_page'] = current_chunk_page
                 chunk_metadata['end_page'] = current_page
                 chunk_metadata['paper_title'] = Paper_title
-                document_id = str(uuid4())
+                document_id = self.generate_hash(new_content.strip())
                 chunk_metadata['document_id'] = document_id
                 new_docs.append(Document(page_content=new_content.strip(), metadata=chunk_metadata))
             return new_docs

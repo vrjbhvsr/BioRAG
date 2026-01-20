@@ -67,3 +67,4 @@ ADD_START_INDEX = True
 #================================================================#
 
 CHROMA_PERSIST_DIR = "chroma_biorag_db"
+PARENT_DOCSTORE_PATH = "./parent_docstore_biorag"

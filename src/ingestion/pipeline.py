@@ -70,7 +70,7 @@ class IngestionPipeline:
                 "\n"
                 "================ Retriever Creation initiated ================\n"
             )
-            retriever = self.retriever.get_retriever(documents)
+            retriever = self.retriever.sync_docs(documents)
             log.info("Retriever is created successfully.")
 
             return retriever
