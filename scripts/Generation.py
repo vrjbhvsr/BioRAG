@@ -31,7 +31,8 @@ try:
                                 #reducer = reducer
                                 )
     
-    pipeline.run("Why is electrical stimulation considered relevant for bone regeneration and osteoblast activity?")
+    dedup = pipeline.run("Why is electrical stimulation considered relevant for bone regeneration and osteoblast activity?")
+    
     log.info(
     "\n"
     "=====================================================\n"

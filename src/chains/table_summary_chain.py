@@ -1,4 +1,4 @@
-from src.models.Llama import model
+from models.Llama import model
 from prompts.table_summariser_prompt import table_summariser_prompt
 from config.logging import log
 from config.exception import CustomException
@@ -22,7 +22,7 @@ class table_summary_chain:
                                             "temperature": TEMPERATURE,
                                             "max_new_tokens": MAX_NEW_TOKENS,
                                             "repetition_penalty": REPETITION_PENALTY,
-                                            
+
                                                     })
             self.prompt = table_summariser_prompt().prompt()
             self.parser = StrOutputParser()

@@ -24,9 +24,7 @@ class retriever:
             self.chroma = chroma_client()
             self.store = self.chroma.store()
             file_store = LocalFileStore(PARENT_DOCSTORE_PATH)
-            self.docstore = create_kv_docstore(file_store,
-                                              byte_store=InMemoryByteStore(),
-                                              in_memory_docstore=InMemoryDocstore())
+            self.docstore = create_kv_docstore(file_store)
             self.parent_splitter = chunking().parent_splitter()
             self.child_splitter = chunking().child_splitter()
             log.info("Chroma client initialized successfully for retriever.")

@@ -136,5 +136,35 @@ QUERY_DO_SAMPLE = False
 QUERY_SKIP_PROMPT = True
 QUERY_TEMPERATURE = 0.4
 QUERY_REPETITION_PENALTY = 1.2
-QUERY_TOP_P = 0.9
+QUERY_TOP_P = 0.91811
+
 #QUERY_RETURN_FULL_TEXT= False
+
+
+#================================================================#
+#                  Mapping Constants
+#================================================================#
+
+MAP_PROMPT = """You are a Scientific Data Extraction Engine.
+
+TASK:
+Analyze the provided document text and determine whether it contains information relevant to the user query.
+If relevant, extract and summarize the experimental findings in a single, detailed, informative, well-formed paragraph.
+
+STRICT OUTPUT RULES (MANDATORY):
+1. Output ONLY a single valid JSON object.
+2. Output MUST start with '{{' and end with '}}'.
+3. The JSON object must contain exactly two fields: "relevant" and "summary".
+4. The "summary" field MUST be a SINGLE STRING containing ONE coherent paragraph.
+5. The summary MUST describe all findings, observations, or understanding, and MUST NOT contain objects, dictionaries, lists, or key–value formatting inside it.
+6. The summary should be up to 400–500 words.
+7. Do NOT include explanations, notes, markdown, code, or any extra text outside the JSON.
+8. If no relevant information is found, return EXACTLY:
+   {{"relevant": false, "summary": "No relevant data found."}}
+
+SCHEMA:
+{{
+  "relevant": boolean,
+  "summary": string
+}}
+"""
