@@ -37,18 +37,17 @@ class GenerationPipeline:
                 "\n"
                 "================ Mapping started ================\n"
             )
-            mapped_responses = self.mapper.map(rewritten_query_list
-                                               )
+            #mapped_responses = self.mapper.map(rewritten_query_list)
             log.info("Mapping completed successfully.")
 
             log.info(
                 "\n"
                 "================ Reducing started ================\n"
             )
-            final_response = self.reducer.reduce(mapped_responses)
+            #final_response = self.reducer.reduce(mapped_responses)
             log.info("Reduction completed successfully.")
 
-            return final_response
+            return rewritten_query_list#final_response
 
         except Exception as e:
             log.error(e)

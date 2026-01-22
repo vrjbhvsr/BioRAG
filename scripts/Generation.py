@@ -13,8 +13,8 @@ logger = log()
 log = logger.get_logger(__name__)
 
 rewriter = QueryRewriter()
-mapper = Mapper()
-reducer = Reducer()
+#mapper = Mapper()
+#reducer = Reducer()
 
 try:
     log.info(
@@ -25,8 +25,8 @@ try:
 )
 
     pipeline = GenerationPipeline(rewriter = rewriter,
-                                mapper = mapper,
-                                reducer = reducer
+                                #mapper = mapper,
+                                #reducer = reducer
                                 )
     
 
