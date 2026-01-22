@@ -1,6 +1,6 @@
 from generation.query_rewrite import QueryRewriter
-from generation.mapping import Mapper
-from generation.reduce import Reducer
+#from generation.mapping import Mapper
+#from generation.reduce import Reducer
 from retrieval.parent_retriever import retirever
 from config.logging import log
 from config.exception import CustomException
@@ -29,7 +29,7 @@ try:
                                 #reducer = reducer
                                 )
     
-
+    pipeline.run("Why is electrical stimulation considered relevant for bone regeneration and osteoblast activity?")
     log.info(
     "\n"
     "=====================================================\n"

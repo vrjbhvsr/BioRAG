@@ -1,6 +1,6 @@
 from generation.query_rewrite import QueryRewriter
-from generation.mapping import Mapper
-from generation.reduce import Reducer
+#from generation.mapping import Mapper
+#from generation.reduce import Reducer
 from retrieval.parent_retriever import retirever
 from config.logging import log
 from config.exception import CustomException
@@ -13,12 +13,12 @@ log = logger.get_logger(__name__)
 
 class GenerationPipeline:
     def __init__(self, 
-                QueryRewriter,
-                 Mapper,
-                 Reducer):
+                QueryRewriter,)
+                 #Mapper,
+                 #Reducer):
         self.QueryRewriter = QueryRewriter
-        self.Mapper = Mapper
-        self.Reducer = Reducer
+        #self.Mapper = Mapper
+        #self.Reducer = Reducer
 
     def run(self, query: str) -> Optional[str]:
         """This Function run the complete generation pipeline to generate the final answer.
