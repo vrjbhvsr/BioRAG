@@ -1,7 +1,7 @@
 from config.logging import log
 from config.exception import CustomException
 import sys
-from lanchain_classic.storage import LocalFileStore, create_kv_docstore
+from langchain_classic.storage import LocalFileStore, create_kv_docstore
 from langchain_classic.retrievers import ParentDocumentRetriever
 from vectorstore.chroma_client import chroma_client
 from langchain_community.docstore import InMemoryDocstore
