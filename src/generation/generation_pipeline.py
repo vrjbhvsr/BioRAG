@@ -1,5 +1,5 @@
 from generation.query_rewrite import QueryRewriter
-#from generation.mapping import Mapper
+from generation.mapping import Mapper
 #from generation.reduce import Reducer
 from retrieval.parent_retriever import retriever
 from generation.deduplication import Deduplication
@@ -20,7 +20,7 @@ class GenerationPipeline:
                  #Reducer):
         self.QueryRewriter = rewriter
         self.deduplicator = deduplicator
-        #self.Mapper = Mapper
+        self.Mapper = Mapper
         #self.Reducer = Reducer
 
     def run(self, query: str) -> Optional[str]:
@@ -45,7 +45,7 @@ class GenerationPipeline:
                 "\n"
                 "================ Mapping started ================\n"
             )
-            #mapped_responses = self.mapper.map(rewritten_query_list)
+            mapped_responses = self.Mapper.map(query, deduplicated_docs)
             log.info("Mapping completed successfully.")
 
             log.info(
@@ -55,7 +55,7 @@ class GenerationPipeline:
             #final_response = self.reducer.reduce(mapped_responses)
             log.info("Reduction completed successfully.")
 
-            return deduplicated_docs#final_response
+            return mapped_responses#final_response
 
         except Exception as e:
             log.error(e)
