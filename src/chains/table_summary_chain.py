@@ -5,6 +5,7 @@ from config.exception import CustomException
 import sys
 from langchain_core.runnables.base import RunnableSequence
 from langchain_core.output_parsers import StrOutputParser
+from constants import *
 
 logger = log()
 log = logger.get_logger(__name__)
@@ -15,7 +16,14 @@ class table_summary_chain:
     """
     def __init__(self):
         
-            self.model = model().load()
+            self.model_pipe = model().load()
+            self.model = self.model_pipe.bind(skip_prompt = True,pipeline_kwargs={
+                                            "do_sample": DO_SAMPLE,
+                                            "temperature": TEMPERATURE,
+                                            "max_new_tokens": MAX_NEW_TOKENS,
+                                            "repetition_penalty": REPETITION_PENALTY,
+                                            
+                                                    })
             self.prompt = table_summariser_prompt().prompt()
             self.parser = StrOutputParser()
 

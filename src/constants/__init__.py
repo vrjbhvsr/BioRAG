@@ -129,11 +129,12 @@ Return only the three queries, each on its own line.
 """
 
 QUERY_MODEL_NAME = "meta-llama/Llama-3.1-8B-Instruct"
-QUERY_MAX_NEW_TOKENS = 512
+QUERY_MAX_NEW_TOKENS = 128
 QUERY_DEVICE_MAP = "auto"
 QUERY_DTYPE = torch.bfloat16
 QUERY_DO_SAMPLE = False
 QUERY_SKIP_PROMPT = True
 QUERY_TEMPERATURE = 0.4
 QUERY_REPETITION_PENALTY = 1.2
+QUERY_TOP_P = 0.9
 #QUERY_RETURN_FULL_TEXT= False

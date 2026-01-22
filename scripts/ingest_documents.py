@@ -12,6 +12,7 @@ import sys
 logger = log()
 log = logger.get_logger(__name__)
 
+
 loader = PDFLoader(FILE_PATH)
 cleaner = DocumentCleaner()
 splitter = SectionBasedSplitter()

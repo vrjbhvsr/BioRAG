@@ -23,28 +23,25 @@ class model(BaseModelLoader):
         self.tokenizer = AutoTokenizer.from_pretrained(self.model_name)
         
 
-    def load(self) -> RunnableBinding:
+    def load(self) -> HuggingFacePipeline:
         """
         Load the table summarization model.
 
         Returns:
-            RunnableBinding: A runnable binding for the table summarization model.
+            HuggingFacePipeline: A runnable binding for the table summarization model.
         """
         try:
             # Placeholder for actual model loading logic
-            log.info("Loading table summarization model...")
+            log.info("Loading model...")
             pipe = pipeline("text-generation",
                     tokenizer=self.tokenizer,
                    model= self.model_name,
-                    device_map = DEVICE_MAP,
-                    #dtype = DTYPE,
-                    max_new_tokens=MAX_NEW_TOKENS,   
-                    do_sample=DO_SAMPLE,
+
                    )
             model_pipe = HuggingFacePipeline(pipeline=pipe)
-            model = model_pipe.bind(skip_prompt = SKIP_PROMPT)
-            log.info("Table summarization model loaded successfully.")
-            return model
+            #model = model_pipe.bind(skip_prompt = SKIP_PROMPT)
+            log.info("model loaded successfully.")
+            return model_pipe
         except Exception as e:
             log.error("Error loading table summarization model.")
             raise CustomException(e, sys)

@@ -13,12 +13,12 @@ log = logger.get_logger(__name__)
 
 class GenerationPipeline:
     def __init__(self, 
-                rewriter,
-                 mapper,
-                 reducer):
-        self.rewriter = rewriter
-        self.mapper = mapper
-        self.reducer = reducer  
+                QueryRewriter,
+                 Mapper,
+                 Reducer):
+        self.QueryRewriter = QueryRewriter
+        self.Mapper = Mapper
+        self.Reducer = Reducer
 
     def run(self, query: str) -> Optional[str]:
         """This Function run the complete generation pipeline to generate the final answer.
