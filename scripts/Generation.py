@@ -1,5 +1,5 @@
 from generation.query_rewrite import QueryRewriter
-#from generation.mapping import Mapper
+from generation.mapping import Mapper
 #from generation.reduce import Reducer
 from generation.deduplication import Deduplication
 from config.logging import log
@@ -14,7 +14,7 @@ log = logger.get_logger(__name__)
 
 rewriter = QueryRewriter()
 deduplicator = Deduplication()
-#mapper = Mapper()
+mapper = Mapper()
 #reducer = Reducer()
 
 try:
@@ -26,8 +26,8 @@ try:
 )
 
     pipeline = GenerationPipeline(rewriter = rewriter,
-                                deduplicator = Deduplication()
-                                #mapper = mapper,
+                                deduplicator = deduplicator,
+                                mapper = mapper,
                                 #reducer = reducer
                                 )
     
