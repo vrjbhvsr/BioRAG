@@ -13,10 +13,10 @@ log = logger.get_logger(__name__)
 
 class GenerationPipeline:
     def __init__(self, 
-                QueryRewriter,):
+                rewriter,):
                  #Mapper,
                  #Reducer):
-        self.QueryRewriter = QueryRewriter
+        self.QueryRewriter = rewriter
         #self.Mapper = Mapper
         #self.Reducer = Reducer
 
@@ -30,7 +30,7 @@ class GenerationPipeline:
                 "\n"
                 "================ Query Rewriting started ================\n"
             )
-            rewritten_query_list = self.rewriter.rewrite(query)
+            rewritten_query_list = self.QueryRewriter.rewrite(query)
             log.info("Query rewritten successfully.")
 
             log.info(

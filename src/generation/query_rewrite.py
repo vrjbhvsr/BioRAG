@@ -25,7 +25,7 @@ class QueryRewriter:
         """
         try:
             log.info("Rewriting query...")
-            response = self.chain.invoke({"query": query})
+            response = self.chain.invoke({"input_query": query})
             rewritten_queries = response.queries
             log.info("Query rewritten successfully.")
             return rewritten_queries

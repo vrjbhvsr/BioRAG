@@ -24,8 +24,8 @@ class QueryRewriteChain:
                                         "max_new_tokens": QUERY_MAX_NEW_TOKENS,
                                         "repetition_penalty": QUERY_REPETITION_PENALTY,
                                         "top_p": QUERY_TOP_P,
-                                        "dtype": QUERY_DTYPE,
-                                        "device_map": QUERY_DEVICE_MAP,
+                                        #"dtype": QUERY_DTYPE,
+                                        #"device_map": QUERY_DEVICE_MAP,
                                                 })
         self.prompt = QueryRewritePrompt().prompt()
         self.parser = PydanticOutputParser(pydantic_object=query_parser)
