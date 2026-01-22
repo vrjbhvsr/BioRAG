@@ -7,7 +7,7 @@ from config.exception import CustomException
 import sys
 from constants import *
 from typing import Optional, Literal
-from scripts.Generation import GenerationPipeline
+from generation.generation_pipeline import GenerationPipeline
 
 logger = log()
 log = logger.get_logger(__name__)
