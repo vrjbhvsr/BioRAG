@@ -13,7 +13,7 @@ log = logger.get_logger(__name__)
 
 class GenerationPipeline:
     def __init__(self, 
-                QueryRewriter,)
+                QueryRewriter,):
                  #Mapper,
                  #Reducer):
         self.QueryRewriter = QueryRewriter
