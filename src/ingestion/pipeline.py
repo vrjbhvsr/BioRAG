@@ -3,7 +3,7 @@ from langchain_core.documents import Document
 from ingestion.loader.base import BaseLoader
 from ingestion.preprocess.base import BaseCleaner
 from ingestion.splitting.base import BaseSplitter
-from retrieval.parent_retriever import retirever
+from retrieval.parent_retriever import retriever
 from config.logging import log
 from config.exception import CustomException
 import sys

@@ -1,10 +1,10 @@
 from constants import *
-from langchain_core.prompt import ChatPromptTemplate
+from langchain_core.prompts import ChatPromptTemplate
 from config.logging import log
 from config.exception import CustomException
 import sys
 from prompts.base import BasePrompt
-from Parsers import Map_parser
+from Parsers.output_parser import Map_parser
 from langchain_core.output_parsers import PydanticOutputParser
 
 logger = log()

@@ -7,7 +7,7 @@ from langchain_core.runnables.base import RunnableSequence, RunnableLambda
 from generation.Normalisers.map_normaliser import map_normaliser
 from constants import *
 from Parsers.output_parser import Map_parser
-from langchain_core.output_parsers import PyanticOutputParser
+from langchain_core.output_parsers import PydanticOutputParser
 
 
 logger = log()
@@ -31,7 +31,7 @@ class map_chain:
                                                     })
             self.prompt = map_prompt().prompt()
             self.normaliser = RunnableLambda(map_normaliser)
-            self.parser = PyanticOutputParser(pydantic_object=Map_parser)
+            self.parser = PydanticOutputParser(pydantic_object=Map_parser)
 
     def chain(self) -> RunnableSequence:
         """
