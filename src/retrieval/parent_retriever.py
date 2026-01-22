@@ -14,7 +14,7 @@ from constants import *
 logger = log()
 log = logger.get_logger(__name__)
 
-class retirever:
+class retriever:
     """
     A retriever that fetches parent documents from the Chroma vector store.
     """
@@ -70,7 +70,7 @@ class retirever:
             log.error("Error syncing documents to the vector store.")
             raise CustomException(e, sys)
 
-    def get_retriever(self,  documents: List[Document]) -> ParentDocumentRetriever:
+    def get_retriever(self) -> ParentDocumentRetriever:
         """
         Get the ParentDocumentRetriever instance.
 

@@ -1,7 +1,8 @@
 from generation.query_rewrite import QueryRewriter
 #from generation.mapping import Mapper
 #from generation.reduce import Reducer
-from retrieval.parent_retriever import retirever
+from retrieval.parent_retriever import retriever
+from generation.deduplication import Deduplication
 from config.logging import log
 from config.exception import CustomException
 import sys
@@ -13,10 +14,12 @@ log = logger.get_logger(__name__)
 
 class GenerationPipeline:
     def __init__(self, 
-                rewriter,):
+                rewriter,
+                deduplicator):
                  #Mapper,
                  #Reducer):
         self.QueryRewriter = rewriter
+        self.deduplicator = deduplicator
         #self.Mapper = Mapper
         #self.Reducer = Reducer
 
@@ -32,6 +35,11 @@ class GenerationPipeline:
             )
             rewritten_query_list = self.QueryRewriter.rewrite(query)
             log.info("Query rewritten successfully.")
+            log.info(
+                "\n"
+                "================ Deduplication started ================\n"
+            )
+            deduplicated_docs = self.deduplicator.deduplicate(rewritten_query_list)
 
             log.info(
                 "\n"
@@ -47,7 +55,7 @@ class GenerationPipeline:
             #final_response = self.reducer.reduce(mapped_responses)
             log.info("Reduction completed successfully.")
 
-            return rewritten_query_list#final_response
+            return deduplicated_docs#final_response
 
         except Exception as e:
             log.error(e)
