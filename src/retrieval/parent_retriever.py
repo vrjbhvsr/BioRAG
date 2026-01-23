@@ -45,7 +45,7 @@ class retriever:
                                                 docstore=self.docstore,
                                                 parent_splitter=self.parent_splitter,
                                                 child_splitter=self.child_splitter,
-                                                search_kwargs={"k": 3})
+                                                search_kwargs={"k": 4})
             log.info("ParentDocumentRetriever created successfully.")
             return retriever
         except Exception as e:

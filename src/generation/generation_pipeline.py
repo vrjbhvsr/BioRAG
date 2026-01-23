@@ -15,12 +15,12 @@ log = logger.get_logger(__name__)
 class GenerationPipeline:
     def __init__(self, 
                 rewriter,
-                deduplicator):
-                 #Mapper,
+                deduplicator,
+                mapper,):
                  #Reducer):
         self.QueryRewriter = rewriter
         self.deduplicator = deduplicator
-        self.Mapper = Mapper
+        self.Mapper = mapper
         #self.Reducer = Reducer
 
     def run(self, query: str) -> Optional[str]:

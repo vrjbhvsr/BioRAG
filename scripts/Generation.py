@@ -31,8 +31,8 @@ try:
                                 #reducer = reducer
                                 )
     
-    dedup = pipeline.run("Why is electrical stimulation considered relevant for bone regeneration and osteoblast activity?")
-    
+    dedup = pipeline.run("In the Materials and Methods section, how is the IonOptix electrical stimulation chamber described, including electrode material, geometry, and well configuration?")
+    print(dedup)
     log.info(
     "\n"
     "=====================================================\n"
