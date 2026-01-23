@@ -21,7 +21,7 @@ class GenerationPipeline:
         self.QueryRewriter = rewriter
         self.deduplicator = deduplicator
         self.Mapper = mapper
-        #self.Reducer = Reducer
+        self.Reducer = Reducer
 
     def run(self, query: str) -> Optional[str]:
         """This Function run the complete generation pipeline to generate the final answer.
@@ -45,17 +45,17 @@ class GenerationPipeline:
                 "\n"
                 "================ Mapping started ================\n"
             )
-            mapped_responses = self.Mapper.map(query, deduplicated_docs)
+            mapped_responses = self.Mapper.map(rewritten_query_list, deduplicated_docs)
             log.info("Mapping completed successfully.")
 
             log.info(
                 "\n"
                 "================ Reducing started ================\n"
             )
-            #final_response = self.reducer.reduce(mapped_responses)
+            final_response = self.reducer.reduce(mapped_responses)
             log.info("Reduction completed successfully.")
 
-            return mapped_responses#final_response
+            return final_response
 
         except Exception as e:
             log.error(e)

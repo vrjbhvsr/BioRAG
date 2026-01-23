@@ -17,7 +17,7 @@ class Mapper:
         self.map_chain = map_chain().chain()
         
 
-    def map(self, query: str, documents: List[Document]) -> str:
+    def map(self, queries: List[str], documents: List[Document]) -> str:
         """
         Maps the input queries using the map chain.
 
@@ -27,7 +27,13 @@ class Mapper:
         Returns:
             list: A list of mapped responses.
         """
-        inputs = [{"user_query": query, "text_chunk": doc} for doc in documents]
+        inputs = [
+                    {
+                        "user_query": q,
+                        "text_chunks": [doc.page_content for doc in documents]
+                    }
+                    for q in queries
+]
         try:
             log.info("Starting mapping process...")
             mapped_responses = self.map_chain.batch(inputs, config = {"max_concurrency": MAX_CONCURRENCY})
