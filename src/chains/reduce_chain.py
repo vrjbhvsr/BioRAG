@@ -37,7 +37,7 @@ class reduce_chain:
         """
         try:
             log.info("Initializing reduce chain...")
-            reduce_chain = self.prompt | self.model | self.normaliser | self.parser
+            reduce_chain = self.prompt | self.model | self.parser #| self.normaliser 
             log.info("Reduce chain initialized successfully.")
             return reduce_chain
         except Exception as e:

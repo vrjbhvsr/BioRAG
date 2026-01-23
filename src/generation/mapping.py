@@ -30,7 +30,7 @@ class Mapper:
         inputs = [
                     {
                         "user_query": q,
-                        "text_chunks": [doc.page_content for doc in documents]
+                        "text_chunk": [doc.page_content for doc in documents]
                     }
                     for q in queries
 ]

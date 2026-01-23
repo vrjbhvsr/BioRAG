@@ -16,7 +16,7 @@ class Reducer:
         self.reduce_chain = reduce_chain().chain()
         
 
-    def reduce(self, mapped_responses: List[str]) -> str:
+    def reduce(self,query: str, mapped_responses: List[str]) -> str:
         """
         Reduces the mapped responses using the reduce chain.
 
@@ -26,10 +26,11 @@ class Reducer:
         Returns:
             str: The reduced response.
         """
-        inputs = {"mapped_responses": mapped_responses}
+        inputs = {"user_query": query, "map_summaries": mapped_responses}
+        
         try:
             log.info("Starting reducing process...")
-            reduced_response = self.reduce_chain.batche(inputs, config = {"max_concurrency": MAX_CONCURRENCY})
+            reduced_response = self.reduce_chain.invoke(inputs, config = {"max_concurrency": MAX_CONCURRENCY})
             log.info("Reducing process completed successfully.")
             return reduced_response
         except Exception as e:

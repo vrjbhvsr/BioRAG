@@ -16,12 +16,12 @@ class GenerationPipeline:
     def __init__(self, 
                 rewriter,
                 deduplicator,
-                mapper,):
-                 #Reducer):
+                mapper,
+                reducer):
         self.QueryRewriter = rewriter
         self.deduplicator = deduplicator
         self.Mapper = mapper
-        self.Reducer = Reducer
+        self.Reducer = reducer
 
     def run(self, query: str) -> Optional[str]:
         """This Function run the complete generation pipeline to generate the final answer.
@@ -52,7 +52,7 @@ class GenerationPipeline:
                 "\n"
                 "================ Reducing started ================\n"
             )
-            final_response = self.reducer.reduce(mapped_responses)
+            final_response = self.Reducer.reduce(query,mapped_responses)
             log.info("Reduction completed successfully.")
 
             return final_response

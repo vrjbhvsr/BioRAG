@@ -4,9 +4,9 @@ from config.exception import CustomException
 import sys
 from prompts.base import BasePrompt
 from langchain_core.output_parsers import PydanticOutputParser
-from Parsers.output_parser import Reduce_parser
+from Parsers.output_parser import ReduceParser
 from constants import *
-from langcahin_core.runnables import RunnableLambda
+from langchain_core.runnables import RunnableLambda
 from Normalisers.reduce_normaliser import reduce_normaliser
 
 logger = log()
@@ -18,7 +18,7 @@ class reduce_prompt(BasePrompt):
     """
     def __init__(self):
         self.system_prompt = REDUCE_PROMPT
-        self.parser = PydanticOutputParser(pydantic_object=Reduce_parser)
+        self.parser = PydanticOutputParser(pydantic_object=ReduceParser)
         
     def prompt(self) -> ChatPromptTemplate:
         """

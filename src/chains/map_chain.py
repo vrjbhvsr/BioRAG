@@ -4,7 +4,7 @@ from config.logging import log
 from config.exception import CustomException
 import sys
 from langchain_core.runnables.base import RunnableSequence, RunnableLambda
-from generation.Normalisers.map_normaliser import map_normaliser
+from Normalisers.map_normaliser import map_normaliser
 from constants import *
 from Parsers.output_parser import Map_parser
 from langchain_core.output_parsers import PydanticOutputParser
