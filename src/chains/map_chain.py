@@ -20,13 +20,14 @@ class map_chain:
     def __init__(self):
         
             self.model_pipe = model().load()
-            self.model = self.model_pipe.bind(skip_prompt = True,
+            self.model = self.model_pipe.bind(skip_prompt = SKIP_PROMPT,
                                             pipeline_kwargs={
                                             "do_sample": MAP_DO_SAMPLE,
                                             "temperature": MAP_TEMPERATURE,
                                             "max_new_tokens": MAP_MAX_NEW_TOKENS,
                                             "repetition_penalty": MAP_REPETITION_PENALTY,
                                             "top_p": MAP_TOP_P,
+                                                
 
                                                     })
             self.prompt = map_prompt().prompt()

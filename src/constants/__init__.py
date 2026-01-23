@@ -130,7 +130,7 @@ Return only the three queries, each on its own line.
 
 QUERY_MODEL_NAME = "meta-llama/Llama-3.1-8B-Instruct"
 QUERY_MAX_NEW_TOKENS = 128
-QUERY_DEVICE_MAP = "auto"
+QUERY_DEVICE_MAP = "cpu"
 QUERY_DTYPE = torch.bfloat16
 QUERY_DO_SAMPLE = False
 QUERY_SKIP_PROMPT = True
@@ -171,7 +171,7 @@ SCHEMA:
 
 MAP_MODEL_NAME = "meta-llama/Llama-3.1-8B-Instruct"
 MAP_MAX_NEW_TOKENS = 1028
-MAP_DEVICE_MAP = "auto"
+MAP_DEVICE_MAP = "cpu"
 MAP_DTYPE = torch.bfloat16
 MAP_DO_SAMPLE = False
 MAP_SKIP_PROMPT = True

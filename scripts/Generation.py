@@ -31,7 +31,7 @@ try:
                                 reducer = reducer
                                 )
     
-    dedup = pipeline.run("How was the electric field strength between the electrodes calculated and validated in this study?")
+    dedup = pipeline.run(input("Enter QUestion related to Paper 'Pulsed Electrical Stimulation Affects Osteoblast Adhesion and Calcium Ion Signaling' /n"))
     print(dedup)
     log.info(
     "\n"
