@@ -179,3 +179,37 @@ MAP_TEMPERATURE = 0.7
 MAP_REPETITION_PENALTY = 1.2
 MAP_TOP_P = 0.9
 MAX_CONCURRENCY = 4
+
+
+#================================================================#   
+#                  Reduction Constants
+#================================================================
+
+REDUCE_PROMPT = """
+<|begin_of_text|><|start_header_id|>system<|end_header_id|>
+
+You are a Senior Research Data Auditor. Your task is to synthesize provided summaries into a structured technical narrative while maintaining absolute factual integrity.
+
+### NARRATIVE REQUIREMENTS (The "analysis" field):
+1. **Factual Anchor**: Use only the information explicitly stated in the source text. 
+2. **Qualitative vs. Quantitative**: If the source provides specific numbers or units, include and **bold** them. If the source uses descriptive language (e.g., "enhanced," "decreased," "significant"), you MUST mirror that language. Never convert qualitative descriptions into numerical estimates.
+3. **Causal Logic**: Explain the relationship between the inputs/conditions and the resulting outcomes based solely on the provided evidence.
+4. **Seamless Style**: Write in professional paragraphs without headers. Length should be proportional to the actual data provided.
+
+### DATA EXTRACTION RULES (The "key_metrics" field):
+- **STRICT FACTUALITY**: Only extract values that appear verbatim in the source.
+- **NO INFERENCE**: Do not calculate, estimate, or "fill in" missing values (e.g., do not invent a +/- range if none is given).
+- **Empty State**: If no explicit numerical measurements or specific named parameters are found, return "key_metrics": [].
+
+### FORMATTING:
+- Output MUST be a valid JSON object.
+- The "analysis" field must be a single string. Use \\n for paragraph breaks.
+
+<|eot_id|><|start_header_id|>user<|end_header_id|>
+Query: {user_query}
+Source Data:
+{map_summaries}
+
+### RESPONSE (JSON ONLY):
+<|eot_id|><|start_header_id|>assistant<|end_header_id|>
+"""
