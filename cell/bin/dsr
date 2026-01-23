@@ -1,0 +1,6 @@
+#!/home/jovyan/work/CellSense/X20251016-CellSense-VB/cell/bin/python
+
+from deepspeed.env_report import cli_main
+
+if __name__ == '__main__':
+    cli_main()
