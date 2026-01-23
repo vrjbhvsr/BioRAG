@@ -1,0 +1,83 @@
+.
+├── Data
+│   └── pdfs
+│       └── cells-11-02650-v2.pdf
+├── Directory_structure.py
+├── evaluation
+│   └── rag_metrics.py
+├── LICENSE
+├── notebooks
+│   ├── chroma_db
+│   │   └── chroma.sqlite3
+│   ├── cleaned_experiments.ipynb
+│   └── inedxing_experiments_openai.ipynb
+├── project_structure.txt
+├── pyproject.toml
+├── README.md
+├── requirements.txt
+├── scripts
+│   ├── Generation.py
+│   └── ingest_documents.py
+├── src
+│   ├── api
+│   │   ├── __init__.py
+│   │   ├── main.py
+│   │   └── schemas.py
+│   ├── chains
+│   │   ├── __init__.py
+│   │   ├── map_chain.py
+│   │   ├── query_rewrite_chain.py
+│   │   ├── reduce_chain.py
+│   │   └── table_summary_chain.py
+│   ├── config
+│   │   ├── exception.py
+│   │   ├── __init__.py
+│   │   ├── logging.py
+│   │   └── settings.py
+│   ├── constants
+│   │   └── __init__.py
+│   ├── embeddings
+│   │   ├── embedder.py
+│   │   └── __init__.py
+│   ├── generation
+│   │   ├── deduplication.py
+│   │   ├── generation_pipeline.py
+│   │   ├── __init__.py
+│   │   ├── mapping.py
+│   │   ├── query_rewrite.py
+│   │   └── reduce.py
+│   ├── ingestion
+│   │   ├── enrichment
+│   │   ├── __init__.py
+│   │   ├── loader
+│   │   ├── pipeline.py
+│   │   ├── preprocess
+│   │   └── splitting
+│   ├── models
+│   │   ├── base.py
+│   │   ├── __init__.py
+│   │   ├── Llama.py
+│   │   └── table_summariser.py
+│   ├── Normalisers
+│   │   ├── map_normaliser.py
+│   │   └── reduce_normaliser.py
+│   ├── Parsers
+│   │   └── output_parser.py
+│   ├── prompts
+│   │   ├── base.py
+│   │   ├── __init__.py
+│   │   ├── map_prompt.py
+│   │   ├── query_rewrite_prompt.py
+│   │   ├── reduce_prompt.py
+│   │   └── table_summariser_prompt.py
+│   ├── retrieval
+│   │   ├── __init__.py
+│   │   └── parent_retriever.py
+│   └── vectorstore
+│       ├── chroma_client.py
+│       ├── collections.py
+│       └── __init__.py
+└── tests
+    └── test_parity.py
+
+26 directories, 55 files
