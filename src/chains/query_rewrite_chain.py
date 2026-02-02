@@ -15,8 +15,8 @@ class QueryRewriteChain:
     """
     A chain for query rewriting tasks.
     """
-    def __init__(self):
-        self.model_pipe = model().load()
+    def __init__(self, model):
+        '''self.model_pipe = model().load()
         self.model = self.model_pipe.bind(skip_prompt = QUERY_SKIP_PROMPT,
                                           pipeline_kwargs={
                                         "do_sample": QUERY_DO_SAMPLE,
@@ -26,7 +26,8 @@ class QueryRewriteChain:
                                         "top_p": QUERY_TOP_P,
                                         #"dtype": QUERY_DTYPE,
                                         #"device_map": QUERY_DEVICE_MAP,
-                                                })
+                                                })'''
+        self.model = model
         self.prompt = QueryRewritePrompt().prompt()
         self.parser = PydanticOutputParser(pydantic_object=query_parser)
 

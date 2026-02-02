@@ -10,8 +10,8 @@ class QueryRewriter:
     """
     A class to handle query rewriting.
     """
-    def __init__(self):
-        self.chain = QueryRewriteChain().chain()
+    def __init__(self, model):
+        self.chain = QueryRewriteChain(model).chain()
 
     def rewrite(self, query: str) -> list[str]:
         """

@@ -12,8 +12,8 @@ class Reducer:
     """
     A class to handle the reducing process using the reduce chain.
     """
-    def __init__(self):
-        self.reduce_chain = reduce_chain().chain()
+    def __init__(self, model):
+        self.reduce_chain = reduce_chain(model).chain()
         
 
     def reduce(self,query: str, mapped_responses: List[str]) -> str:

@@ -8,14 +8,17 @@ import sys
 from constants import *
 from typing import Optional, Literal
 from generation.generation_pipeline import GenerationPipeline
+from models.Llama import model
 
 logger = log()
 log = logger.get_logger(__name__)
 
-rewriter = QueryRewriter()
+model = model().load()
+
+rewriter = QueryRewriter(model)
 deduplicator = Deduplication()
-mapper = Mapper()
-reducer = Reducer()
+mapper = Mapper(model)
+reducer = Reducer(model)
 
 try:
     log.info(
@@ -31,7 +34,7 @@ try:
                                 reducer = reducer
                                 )
     
-    dedup = pipeline.run(input("Enter QUestion related to Paper 'Pulsed Electrical Stimulation Affects Osteoblast Adhesion and Calcium Ion Signaling' /n"))
+    dedup = pipeline.run(input("Enter Question related to Paper 'Pulsed Electrical Stimulation Affects Osteoblast Adhesion and Calcium Ion Signaling' /n"))
     print(dedup)
     log.info(
     "\n"

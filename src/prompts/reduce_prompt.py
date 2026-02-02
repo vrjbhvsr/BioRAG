@@ -1,4 +1,4 @@
-from langchain_core.prompts import ChatPromptTemplate
+from langchain_core.prompts import ChatPromptTemplate, MessagesPlaceholder
 from config.logging import log
 from config.exception import CustomException
 import sys
@@ -30,7 +30,10 @@ class reduce_prompt(BasePrompt):
         try:
             log.info("Creating reduce prompt template...")
             prompt = ChatPromptTemplate.from_messages([
-                ("system", self.system_prompt)
+                ("system", self.system_prompt),
+                MessagesPlaceholder("chat_history")
+                ("user", "{user_query}")
+                
             ]).partial(format_instructions=self.parser.get_format_instructions())
             log.info("Reduce prompt template created successfully.")
             return prompt

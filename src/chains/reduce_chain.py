@@ -16,15 +16,16 @@ class reduce_chain:
     """
     A chain for reducing tasks using a language model.
     """
-    def __init__(self):
-        self.model_pipe = model().load()
+    def __init__(self, model):
+        '''self.model_pipe = model().load()
         self.model = self.model_pipe.bind(skip_prompt = SKIP_PROMPT,
                                           pipeline_kwargs={
                                               "do_sample": MAP_DO_SAMPLE,
                                             "temperature": MAP_TEMPERATURE,
                                             "max_new_tokens": MAP_MAX_NEW_TOKENS,
                                             "repetition_penalty": MAP_REPETITION_PENALTY,
-                                            "top_p": MAP_TOP_P,})
+                                            "top_p": MAP_TOP_P,})'''
+        self.model = model
         self.prompt = reduce_prompt().prompt()
         self.normaliser = RunnableLambda(reduce_normaliser)
         self.parser = PydanticOutputParser(pydantic_object=ReduceParser)

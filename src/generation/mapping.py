@@ -13,8 +13,8 @@ class Mapper:
     """
     A class to handle the mapping process using the map chain.
     """
-    def __init__(self):
-        self.map_chain = map_chain().chain()
+    def __init__(self, model):
+        self.map_chain = map_chain(model).chain()
         
 
     def map(self, queries: List[str], documents: List[Document]) -> str:

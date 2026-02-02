@@ -23,7 +23,7 @@ class model(BaseModelLoader):
         self.tokenizer = AutoTokenizer.from_pretrained(self.model_name)
         
 
-    def load(self) -> HuggingFacePipeline:
+    def load(self) -> RunnableBinding:
         """
         Load the table summarization model.
 
@@ -39,9 +39,16 @@ class model(BaseModelLoader):
 
                    )
             model_pipe = HuggingFacePipeline(pipeline=pipe)
-            #model = model_pipe.bind(skip_prompt = SKIP_PROMPT)
+            model = model_pipe.bind(skip_prompt = SKIP_PROMPT,
+                                            pipeline_kwargs={
+                                            "do_sample": MAP_DO_SAMPLE,
+                                            "temperature": MAP_TEMPERATURE,
+                                            "max_new_tokens": MAP_MAX_NEW_TOKENS,
+                                            "repetition_penalty": MAP_REPETITION_PENALTY,
+                                            "top_p": MAP_TOP_P,
+                                                    })
             log.info("model loaded successfully.")
-            return model_pipe
+            return model
         except Exception as e:
             log.error("Error loading table summarization model.")
             raise CustomException(e, sys)

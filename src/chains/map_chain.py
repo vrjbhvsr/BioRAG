@@ -17,9 +17,9 @@ class map_chain:
     """
     A chain for mapping tasks.
     """
-    def __init__(self):
+    def __init__(self, model):
         
-            self.model_pipe = model().load()
+            '''self.model_pipe = model().load()
             self.model = self.model_pipe.bind(skip_prompt = SKIP_PROMPT,
                                             pipeline_kwargs={
                                             "do_sample": MAP_DO_SAMPLE,
@@ -27,9 +27,8 @@ class map_chain:
                                             "max_new_tokens": MAP_MAX_NEW_TOKENS,
                                             "repetition_penalty": MAP_REPETITION_PENALTY,
                                             "top_p": MAP_TOP_P,
-                                                
-
-                                                    })
+                                                    })'''
+            self.model = model
             self.prompt = map_prompt().prompt()
             self.normaliser = RunnableLambda(map_normaliser)
             self.parser = PydanticOutputParser(pydantic_object=Map_parser)
