@@ -29,16 +29,10 @@ class Metric(BaseModel):
     )
 
 class ReduceParser(BaseModel):
-    '''is_sufficient: Optional[bool] = Field(
-        default=None,
-        description="True if data was found."
-    )'''
-
-    key_metrics: Optional[List[Metric]] = Field(
-        default=None,
+    key_metrics: List[Metric] = Field(
+        default_factory=list,
         description="Optional list of extracted measurements."
     )
-
     analysis: str = Field(
-        description="The seamless narrative report (no headers) as multiple paragraphs."
+        description="Seamless narrative report (no headers) as multiple paragraphs."
     )

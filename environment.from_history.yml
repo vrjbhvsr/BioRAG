@@ -1,0 +1,9 @@
+name: BioRAG
+channels:
+  - conda-forge
+dependencies:
+  - python=3.10
+  - poppler
+  - tesseract
+  - libheif
+prefix: /opt/conda/envs/BioRAG

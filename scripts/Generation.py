@@ -34,7 +34,7 @@ try:
                                 reducer = reducer
                                 )
     
-    dedup = pipeline.run(input("Enter Question related to Paper 'Pulsed Electrical Stimulation Affects Osteoblast Adhesion and Calcium Ion Signaling' /n"))
+    dedup = pipeline.run(input("User:  "))
     print(dedup)
     log.info(
     "\n"

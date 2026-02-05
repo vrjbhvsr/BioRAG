@@ -31,10 +31,10 @@ class reduce_prompt(BasePrompt):
             log.info("Creating reduce prompt template...")
             prompt = ChatPromptTemplate.from_messages([
                 ("system", self.system_prompt),
-                MessagesPlaceholder("chat_history")
+                #MessagesPlaceholder("chat_history")
                 ("user", "{user_query}")
                 
-            ]).partial(format_instructions=self.parser.get_format_instructions())
+            ])#.partial(format_instructions=self.parser.get_format_instructions())
             log.info("Reduce prompt template created successfully.")
             return prompt
         except Exception as e:

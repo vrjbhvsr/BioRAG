@@ -8,6 +8,8 @@ from config.exception import CustomException
 import sys
 from constants import *
 from typing import Optional, Literal
+from generation.state import State
+from langchain_core.messages import AIMessage
 
 logger = log()
 log = logger.get_logger(__name__)
@@ -56,7 +58,34 @@ class GenerationPipeline:
             log.info("Reduction completed successfully.")
 
             return final_response
-
+    
         except Exception as e:
             log.error(e)
             raise CustomException(e, sys)
+    
+    '''def rewrite_node(self, state: State):
+
+        # Once the user ask the query it will be loaded in the sate as a last message
+        query = state["messages"][-1].content
+        rewritten_queries = self.QueryRewriter.rewrite(query)
+        return {"rewritten_queries": rewritten_queries}
+
+    def deduplicate_node(self, state: State):
+        # state also stories the list of queries
+        docs = self.deduplicator.deduplicate(state["rewritten_queries"])
+        return {"docs": docs}
+
+    def map_node(self, state: State):
+
+        responses = self.Mapper.map(state["rewritten_queries"], state["docs"])
+        return {"mapped_responses": responses}
+
+    def reduce_node(self, state: State):
+       
+        original_query = state["messages"][-1].content
+        final_answer = self.Reducer.reduce(original_query, state["mapped_responses"])
+        
+        
+        return {"messages": [AIMessage(content=final_narrative)],
+        "key_metrics": parsed_output.key_metrics}'''
+
