@@ -1,0 +1,11 @@
+.venv/
+__pycache__/
+*.pyc
+.git/
+data/
+outputs/
+*.ckpt
+*.pt
+*.pth
+*.tar
+*.zip
